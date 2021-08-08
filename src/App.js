@@ -26,7 +26,7 @@ function App() {
   // Fetch Task
   const fetchTask = async (id) => {
     const res = await fetch(
-      `http://127.0.0.1:8000/api/tasks/v1/${id}?format=json`
+      `http://127.0.0.1:8000/api/tasks/v1/${id}/?format=json`
     );
     const data = await res.json();
 
@@ -47,7 +47,7 @@ function App() {
 
   // Delete task
   const deleteTask = async (id) => {
-    await fetch(`http://127.0.0.1:8000/api/tasks/v1/${id}?format=json`, {
+    await fetch(`http://127.0.0.1:8000/api/tasks/v1/${id}/?format=json`, {
       method: 'DELETE'
     });
     setTasks(tasks.filter((task) => task.id !== id));
@@ -59,7 +59,7 @@ function App() {
     const updatedTask = { ...taskToToggle, completed: !taskToToggle.completed };
 
     const res = await fetch(
-      `http://127.0.0.1:8000/api/tasks/v1/${id}?format=json`,
+      `http://127.0.0.1:8000/api/tasks/v1/${id}/?format=json`,
       {
         method: 'PUT',
         headers: { 'Content-type': 'application/json' },
