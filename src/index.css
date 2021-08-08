@@ -20,3 +20,9 @@ body {
 .task:nth-of-type(odd) {
   background-color: rgba(45, 207, 253, 0.25);
 }
+.delete {
+  float: right;
+}
+.delete > svg {
+  color: rgb(200, 10, 30);
+}
