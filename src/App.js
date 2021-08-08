@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Header from './components/Header';
 import Tasks from './components/Tasks';
+import AddTask from './components/AddTask';
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -51,6 +52,7 @@ function App() {
     <div className="app-container container d-flex justify-content-center">
       <div className="card my-2 p-2 align-self-center">
         <Header />
+        <AddTask />
         {tasks.length > 0 ? (
           <Tasks
             tasks={tasks}
