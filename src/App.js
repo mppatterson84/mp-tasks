@@ -34,6 +34,13 @@ function App() {
     }
   ]);
 
+  // Add Task
+  const addTask = (task) => {
+    const id = Math.floor(Math.random() * 10000 + 1);
+    const newTask = { id, ...task };
+    setTasks([...tasks, newTask]);
+  };
+
   // Delete task
   const deleteTask = (id) => {
     setTasks(tasks.filter((task) => task.id !== id));
@@ -52,7 +59,7 @@ function App() {
     <div className="app-container container d-flex justify-content-center">
       <div className="card my-2 p-2 align-self-center">
         <Header />
-        <AddTask />
+        <AddTask onAdd={addTask} />
         {tasks.length > 0 ? (
           <Tasks
             tasks={tasks}
