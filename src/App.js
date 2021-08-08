@@ -4,6 +4,7 @@ import Tasks from './components/Tasks';
 import AddTask from './components/AddTask';
 
 function App() {
+  const [showAddTask, setShowAddTask] = useState(false);
   const [tasks, setTasks] = useState([
     {
       id: 1,
@@ -58,8 +59,11 @@ function App() {
   return (
     <div className="app-container container d-flex justify-content-center">
       <div className="card my-2 p-2 align-self-center">
-        <Header />
-        <AddTask onAdd={addTask} />
+        <Header
+          onAdd={() => setShowAddTask(!showAddTask)}
+          showAdd={showAddTask}
+        />
+        {showAddTask && <AddTask onAdd={addTask} />}
         {tasks.length > 0 ? (
           <Tasks
             tasks={tasks}
