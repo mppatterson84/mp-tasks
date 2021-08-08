@@ -23,6 +23,16 @@ function App() {
     return data;
   };
 
+  // Fetch Task
+  const fetchTask = async (id) => {
+    const res = await fetch(
+      `http://127.0.0.1:8000/api/tasks/v1/${id}?format=json`
+    );
+    const data = await res.json();
+
+    return data;
+  };
+
   // Add Task
   const addTask = async (task) => {
     const res = await fetch('http://127.0.0.1:8000/api/tasks/v1/?format=json', {
@@ -44,10 +54,24 @@ function App() {
   };
 
   // Toggle complete
-  const toggleComplete = (id) => {
+  const toggleComplete = async (id) => {
+    const taskToToggle = await fetchTask(id);
+    const updatedTask = { ...taskToToggle, completed: !taskToToggle.completed };
+
+    const res = await fetch(
+      `http://127.0.0.1:8000/api/tasks/v1/${id}?format=json`,
+      {
+        method: 'PUT',
+        headers: { 'Content-type': 'application/json' },
+        body: JSON.stringify(updatedTask)
+      }
+    );
+
+    const data = await res.json();
+
     setTasks(
       tasks.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task
+        task.id === id ? { ...task, completed: data.completed } : task
       )
     );
   };
