@@ -35,7 +35,7 @@ function App() {
 
   return (
     <div className="app-container container d-flex justify-content-center">
-      <div className="card p-2 align-self-center">
+      <div className="card my-2 p-2 align-self-center">
         <Header />
         <Tasks tasks={tasks} />
       </div>
