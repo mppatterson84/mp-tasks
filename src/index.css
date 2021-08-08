@@ -14,3 +14,9 @@ body {
   min-width: 300px;
   max-width: 600px;
 }
+.task:nth-of-type(even) {
+  background-color: rgba(34, 195, 41, 0.25);
+}
+.task:nth-of-type(odd) {
+  background-color: rgba(45, 207, 253, 0.25);
+}
