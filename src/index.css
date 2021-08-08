@@ -7,9 +7,6 @@ body {
     rgba(45, 207, 253, 0.75) 99%
   );
 }
-.app-container {
-  min-height: 100vh;
-}
 .card {
   min-width: 300px;
   max-width: 600px;

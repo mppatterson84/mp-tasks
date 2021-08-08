@@ -77,22 +77,31 @@ function App() {
   };
 
   return (
-    <div className="app-container container d-flex justify-content-center">
-      <div className="card my-2 p-2 align-self-center">
-        <Header
-          onAdd={() => setShowAddTask(!showAddTask)}
-          showAdd={showAddTask}
-        />
-        {showAddTask && <AddTask onAdd={addTask} />}
-        {tasks.length > 0 ? (
-          <Tasks
-            tasks={tasks}
-            onDelete={deleteTask}
-            onToggle={toggleComplete}
+    <div>
+      <nav className="navbar navbar-dark bg-dark">
+        <div className="container-fluid">
+          <a className="navbar-brand" href="https://www.michael-patterson.com/">
+            Michael-Patterson.com
+          </a>
+        </div>
+      </nav>
+      <div className="container">
+        <div className="card my-3 mx-auto p-2">
+          <Header
+            onAdd={() => setShowAddTask(!showAddTask)}
+            showAdd={showAddTask}
           />
-        ) : (
-          <p>No tasks available. Add some tasks.</p>
-        )}
+          {showAddTask && <AddTask onAdd={addTask} />}
+          {tasks.length > 0 ? (
+            <Tasks
+              tasks={tasks}
+              onDelete={deleteTask}
+              onToggle={toggleComplete}
+            />
+          ) : (
+            <p>No tasks available. Add some tasks.</p>
+          )}
+        </div>
       </div>
     </div>
   );
