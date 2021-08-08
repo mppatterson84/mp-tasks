@@ -26,3 +26,6 @@ body {
 .delete > svg {
   color: rgb(200, 10, 30);
 }
+.delete > svg:hover {
+  cursor: pointer;
+}
