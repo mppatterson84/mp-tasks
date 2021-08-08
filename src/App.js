@@ -33,11 +33,20 @@ function App() {
     }
   ]);
 
+  // Delete task
+  const deleteTask = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
+
   return (
     <div className="app-container container d-flex justify-content-center">
       <div className="card my-2 p-2 align-self-center">
         <Header />
-        <Tasks tasks={tasks} />
+        {tasks.length > 0 ? (
+          <Tasks tasks={tasks} onDelete={deleteTask} />
+        ) : (
+          <p>No tasks available. Add some tasks.</p>
+        )}
       </div>
     </div>
   );
