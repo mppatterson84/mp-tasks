@@ -24,10 +24,15 @@ function App() {
   };
 
   // Add Task
-  const addTask = (task) => {
-    const id = Math.floor(Math.random() * 10000 + 1);
-    const newTask = { id, ...task };
-    setTasks([...tasks, newTask]);
+  const addTask = async (task) => {
+    const res = await fetch('http://127.0.0.1:8000/api/tasks/v1/?format=json', {
+      method: 'POST',
+      headers: { 'Content-type': 'application/json' },
+      body: JSON.stringify(task)
+    });
+    const data = await res.json();
+
+    setTasks([...tasks, data]);
   };
 
   // Delete task
