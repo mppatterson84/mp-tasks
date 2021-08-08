@@ -38,12 +38,25 @@ function App() {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
+  // Toggle complete
+  const toggleComplete = (id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
+  };
+
   return (
     <div className="app-container container d-flex justify-content-center">
       <div className="card my-2 p-2 align-self-center">
         <Header />
         {tasks.length > 0 ? (
-          <Tasks tasks={tasks} onDelete={deleteTask} />
+          <Tasks
+            tasks={tasks}
+            onDelete={deleteTask}
+            onToggle={toggleComplete}
+          />
         ) : (
           <p>No tasks available. Add some tasks.</p>
         )}
