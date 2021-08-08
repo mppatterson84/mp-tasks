@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const Header = ({ title }) => {
   return (
     <div>
@@ -8,6 +10,10 @@ const Header = ({ title }) => {
 
 Header.defaultProps = {
   title: 'Tasks'
+};
+
+Header.propTypes = {
+  title: PropTypes.string.isRequired
 };
 
 export default Header;
