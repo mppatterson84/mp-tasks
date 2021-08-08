@@ -3,7 +3,7 @@ import Button from './Button';
 
 const Header = ({ title }) => {
   return (
-    <div>
+    <div className="d-flex justify-content-around">
       <h1>{title}</h1>
       <Button color="primary" text="Add" />
     </div>
