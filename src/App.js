@@ -31,7 +31,10 @@ function App() {
   };
 
   // Delete task
-  const deleteTask = (id) => {
+  const deleteTask = async (id) => {
+    await fetch(`http://127.0.0.1:8000/api/tasks/v1/${id}?format=json`, {
+      method: 'DELETE'
+    });
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
