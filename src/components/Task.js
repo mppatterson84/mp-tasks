@@ -6,6 +6,15 @@ const Task = ({ task, onDelete, onToggle }) => {
       <span className="delete">
         <FaTrash onClick={() => onDelete(task.id)} />
       </span>
+      <span>
+        <input
+          type="checkbox"
+          name="completed"
+          id="completedCheck"
+          onChange={() => onToggle(task.id)}
+          checked={task.completed}
+        />
+      </span>
       <h4>{task.title}</h4>
       <p>{task.detail}</p>
       <p>{task.due_by}</p>
