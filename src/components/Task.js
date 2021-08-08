@@ -1,6 +1,6 @@
 import { FaTrash } from 'react-icons/fa';
 
-const Task = ({ task, onDelete }) => {
+const Task = ({ task, onDelete, onToggle }) => {
   return (
     <div className="task mt-1 p-2">
       <span className="delete">
