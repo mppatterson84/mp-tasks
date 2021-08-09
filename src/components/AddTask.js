@@ -54,6 +54,7 @@ const AddTask = ({ onAdd }) => {
           className="form-control"
           value={due_by}
           onChange={(e) => setDueBy(e.target.value)}
+          required
         />
       </div>
       <input type="submit" value="Save Task" className="btn btn-success my-2" />
