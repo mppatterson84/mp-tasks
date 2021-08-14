@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Tasks from './components/Tasks';
 import AddTask from './components/AddTask';
 import Login from './components/pages/Login';
+import Nav from './components/Nav';
 
 function App() {
   const [showAddTask, setShowAddTask] = useState(false);
@@ -79,13 +80,7 @@ function App() {
 
   return (
     <div>
-      <nav className="navbar navbar-dark bg-dark">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="https://www.michael-patterson.com/">
-            Michael-Patterson.com
-          </a>
-        </div>
-      </nav>
+      <Nav />
       <div className="container">
         <Login />
         <div className="card my-3 mx-auto p-2">
