@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
-import Header from './components/Header';
-import Tasks from './components/Tasks';
+import { BrowserRouter, Route } from 'react-router-dom';
 import AddTask from './components/AddTask';
+import Header from './components/Header';
 import Login from './components/pages/Login';
 import Nav from './components/Nav';
+import Profile from './components/pages/Profile';
+import Signup from './components/pages/Signup';
+import Tasks from './components/Tasks';
 
 function App() {
   const [showAddTask, setShowAddTask] = useState(false);
@@ -82,7 +85,11 @@ function App() {
     <div>
       <Nav />
       <div className="container">
-        <Login />
+        <BrowserRouter>
+          <Route path="/Login" component={Login} />
+          <Route path="/Profile" component={Profile} />
+          <Route path="/Signup" component={Signup} />
+        </BrowserRouter>
         <div className="card my-3 mx-auto p-2">
           <Header
             onAdd={() => setShowAddTask(!showAddTask)}
