@@ -11,6 +11,23 @@ import Tasks from './components/Tasks';
 function App() {
   const [showAddTask, setShowAddTask] = useState(false);
   const [tasks, setTasks] = useState([]);
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetch(
+        'http://127.0.0.1:8000/api/tasks/v1/users/',
+        {
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include'
+        }
+      );
+
+      const content = await response.json();
+
+      setUsername(content[0].username);
+    })();
+  });
 
   useEffect(() => {
     const getTasks = async () => {
@@ -85,9 +102,14 @@ function App() {
     <BrowserRouter>
       <div>
         <Nav />
+        <Nav username={username} />
         <div className="container">
           <Route path="/Login" component={Login} />
           <Route path="/Profile" component={Profile} />
+          <Route
+            path="/Profile"
+            component={() => <Profile username={username} />}
+          />
           <Route path="/Signup" component={Signup} />
           <div className="card my-3 mx-auto p-2">
             <Header
