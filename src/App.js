@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Tasks from './components/Tasks';
 import AddTask from './components/AddTask';
+import Login from './components/pages/Login';
 
 function App() {
   const [showAddTask, setShowAddTask] = useState(false);
@@ -86,6 +87,7 @@ function App() {
         </div>
       </nav>
       <div className="container">
+        <Login />
         <div className="card my-3 mx-auto p-2">
           <Header
             onAdd={() => setShowAddTask(!showAddTask)}
