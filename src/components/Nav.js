@@ -1,13 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Nav = ({ username }) => {
+const Nav = ({ username, csrftoken }) => {
   const logout = async () => {
-    await fetch('http://127.0.0.1:8000/api/tasks/v1/rest-auth/logout/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include'
-    });
+    await fetch(
+      `${process.env.REACT_APP_API_HOST}/api/tasks/v1/rest-auth/logout/`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': csrftoken
+        },
+        credentials: 'include'
+      }
+    );
   };
 
   let menu;
