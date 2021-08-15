@@ -25,7 +25,9 @@ function App() {
 
       const content = await response.json();
 
-      setUsername(content[0].username);
+      if (!content.detail) {
+        setUsername(content[0].username);
+      }
     })();
   });
 
@@ -101,11 +103,9 @@ function App() {
   return (
     <BrowserRouter>
       <div>
-        <Nav />
         <Nav username={username} />
         <div className="container">
           <Route path="/Login" component={Login} />
-          <Route path="/Profile" component={Profile} />
           <Route
             path="/Profile"
             component={() => <Profile username={username} />}
