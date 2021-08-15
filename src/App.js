@@ -13,6 +13,7 @@ function App() {
   const [showAddTask, setShowAddTask] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [username, setUsername] = useState('');
+  const [userId, setUserId] = useState(null);
   const [csrftoken, setCsrftoken] = useState('');
 
   // Get csrftoken
@@ -20,6 +21,7 @@ function App() {
     setCsrftoken(Cookies.get('csrftoken'));
   }, []);
 
+  // Get User
   useEffect(() => {
     (async () => {
       const response = await fetch(
@@ -36,6 +38,7 @@ function App() {
       const content = await response.json();
 
       if (!content.detail) {
+        setUserId(content[0].id);
         setUsername(content[0].username);
       }
     })();
@@ -146,7 +149,7 @@ function App() {
               onAdd={() => setShowAddTask(!showAddTask)}
               showAdd={showAddTask}
             />
-            {showAddTask && <AddTask onAdd={addTask} />}
+            {showAddTask && <AddTask onAdd={addTask} userId={userId} />}
             {tasks.length > 0 ? (
               <Tasks
                 tasks={tasks}
