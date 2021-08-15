@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
-const AddTask = ({ onAdd }) => {
+const AddTask = ({ onAdd, userId }) => {
   const [title, setTitle] = useState('');
   const [detail, setDetail] = useState('');
   const [completed, setCompleted] = useState(false);
   const [due_by, setDueBy] = useState('');
+  const [author, setAuthor] = useState(userId);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -14,12 +15,13 @@ const AddTask = ({ onAdd }) => {
       return;
     }
 
-    onAdd({ title, detail, due_by, completed });
+    onAdd({ title, detail, due_by, completed, author });
 
     setTitle('');
     setDetail('');
     setCompleted(false);
     setDueBy('');
+    setAuthor(userId);
   };
 
   return (
