@@ -41,7 +41,10 @@ function App() {
 
   // Fetch Tasks
   const fetchTasks = async () => {
-    const res = await fetch('http://127.0.0.1:8000/api/tasks/v1/?format=json');
+    const res = await fetch('http://127.0.0.1:8000/api/tasks/v1/', {
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include'
+    });
     const data = await res.json();
 
     return data;
@@ -49,9 +52,10 @@ function App() {
 
   // Fetch Task
   const fetchTask = async (id) => {
-    const res = await fetch(
-      `http://127.0.0.1:8000/api/tasks/v1/${id}/?format=json`
-    );
+    const res = await fetch(`http://127.0.0.1:8000/api/tasks/v1/${id}/`, {
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include'
+    });
     const data = await res.json();
 
     return data;
@@ -59,9 +63,13 @@ function App() {
 
   // Add Task
   const addTask = async (task) => {
-    const res = await fetch('http://127.0.0.1:8000/api/tasks/v1/?format=json', {
+    const res = await fetch('http://127.0.0.1:8000/api/tasks/v1/', {
       method: 'POST',
-      headers: { 'Content-type': 'application/json' },
+      headers: {
+        'Content-type': 'application/json'
+        // 'X-CSRFToken': csrfToken
+      },
+      credentials: 'include',
       body: JSON.stringify(task)
     });
     const data = await res.json();
@@ -71,7 +79,8 @@ function App() {
 
   // Delete task
   const deleteTask = async (id) => {
-    await fetch(`http://127.0.0.1:8000/api/tasks/v1/${id}/?format=json`, {
+    await fetch(`http://127.0.0.1:8000/api/tasks/v1/${id}/`, {
+      credentials: 'include',
       method: 'DELETE'
     });
     setTasks(tasks.filter((task) => task.id !== id));
@@ -82,14 +91,12 @@ function App() {
     const taskToToggle = await fetchTask(id);
     const updatedTask = { ...taskToToggle, completed: !taskToToggle.completed };
 
-    const res = await fetch(
-      `http://127.0.0.1:8000/api/tasks/v1/${id}/?format=json`,
-      {
-        method: 'PUT',
-        headers: { 'Content-type': 'application/json' },
-        body: JSON.stringify(updatedTask)
-      }
-    );
+    const res = await fetch(`http://127.0.0.1:8000/api/tasks/v1/${id}/`, {
+      method: 'PUT',
+      headers: { 'Content-type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify(updatedTask)
+    });
 
     const data = await res.json();
 
