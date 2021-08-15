@@ -11,16 +11,19 @@ const Signup = () => {
   const submit = async (e) => {
     e.preventDefault();
 
-    await fetch('http://127.0.0.1:8000/api/tasks/v1/rest-auth/registration/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        username,
-        email,
-        password1,
-        password2
-      })
-    });
+    await fetch(
+      `${process.env.REACT_APP_API_HOST}/api/tasks/v1/rest-auth/registration/`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username,
+          email,
+          password1,
+          password2
+        })
+      }
+    );
 
     setRedirect(true);
   };
