@@ -23,9 +23,12 @@ function App() {
   useEffect(() => {
     (async () => {
       const response = await fetch(
-        'http://127.0.0.1:8000/api/tasks/v1/users/',
+        `${process.env.REACT_APP_API_HOST}/api/tasks/v1/users/`,
         {
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrftoken
+          },
           credentials: 'include'
         }
       );
@@ -48,7 +51,7 @@ function App() {
 
   // Fetch Tasks
   const fetchTasks = async () => {
-    const res = await fetch('http://127.0.0.1:8000/api/tasks/v1/', {
+    const res = await fetch(`${process.env.REACT_APP_API_HOST}/api/tasks/v1/`, {
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include'
     });
@@ -59,10 +62,16 @@ function App() {
 
   // Fetch Task
   const fetchTask = async (id) => {
-    const res = await fetch(`http://127.0.0.1:8000/api/tasks/v1/${id}/`, {
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include'
-    });
+    const res = await fetch(
+      `${process.env.REACT_APP_API_HOST}/api/tasks/v1/${id}/`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': csrftoken
+        },
+        credentials: 'include'
+      }
+    );
     const data = await res.json();
 
     return data;
@@ -70,11 +79,11 @@ function App() {
 
   // Add Task
   const addTask = async (task) => {
-    const res = await fetch('http://127.0.0.1:8000/api/tasks/v1/', {
+    const res = await fetch(`${process.env.REACT_APP_API_HOST}/api/tasks/v1/`, {
       method: 'POST',
       headers: {
-        'Content-type': 'application/json'
-        // 'X-CSRFToken': csrfToken
+        'Content-type': 'application/json',
+        'X-CSRFToken': csrftoken
       },
       credentials: 'include',
       body: JSON.stringify(task)
@@ -86,7 +95,8 @@ function App() {
 
   // Delete task
   const deleteTask = async (id) => {
-    await fetch(`http://127.0.0.1:8000/api/tasks/v1/${id}/`, {
+    await fetch(`${process.env.REACT_APP_API_HOST}/api/tasks/v1/${id}/`, {
+      headers: { 'X-CSRFToken': csrftoken },
       credentials: 'include',
       method: 'DELETE'
     });
@@ -98,12 +108,18 @@ function App() {
     const taskToToggle = await fetchTask(id);
     const updatedTask = { ...taskToToggle, completed: !taskToToggle.completed };
 
-    const res = await fetch(`http://127.0.0.1:8000/api/tasks/v1/${id}/`, {
-      method: 'PUT',
-      headers: { 'Content-type': 'application/json' },
-      credentials: 'include',
-      body: JSON.stringify(updatedTask)
-    });
+    const res = await fetch(
+      `${process.env.REACT_APP_API_HOST}/api/tasks/v1/${id}/`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-type': 'application/json',
+          'X-CSRFToken': csrftoken
+        },
+        credentials: 'include',
+        body: JSON.stringify(updatedTask)
+      }
+    );
 
     const data = await res.json();
 
@@ -117,7 +133,7 @@ function App() {
   return (
     <BrowserRouter>
       <div>
-        <Nav username={username} />
+        <Nav username={username} csrftoken={csrftoken} />
         <div className="container">
           <Route path="/Login" component={Login} />
           <Route
