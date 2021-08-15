@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import AddTask from './components/AddTask';
 import Header from './components/Header';
 import Login from './components/pages/Login';
@@ -12,6 +13,12 @@ function App() {
   const [showAddTask, setShowAddTask] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [username, setUsername] = useState('');
+  const [csrftoken, setCsrftoken] = useState('');
+
+  // Get csrftoken
+  useEffect(() => {
+    setCsrftoken(Cookies.get('csrftoken'));
+  }, []);
 
   useEffect(() => {
     (async () => {
