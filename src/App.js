@@ -133,7 +133,11 @@ function App() {
   return (
     <BrowserRouter>
       <div>
-        <Nav username={username} csrftoken={csrftoken} />
+        <Nav
+          username={username}
+          csrftoken={csrftoken}
+          setUsername={setUsername}
+        />
         <div className="container">
           <Route path="/Login" component={Login} />
           <Route

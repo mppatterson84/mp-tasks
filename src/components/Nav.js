@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Nav = ({ username, csrftoken }) => {
+const Nav = ({ username, csrftoken, setUsername }) => {
   const logout = async () => {
     await fetch(
       `${process.env.REACT_APP_API_HOST}/api/tasks/v1/rest-auth/logout/`,
@@ -14,6 +14,7 @@ const Nav = ({ username, csrftoken }) => {
         credentials: 'include'
       }
     );
+    setUsername('');
   };
 
   let menu;
