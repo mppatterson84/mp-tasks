@@ -27,10 +27,7 @@ function App() {
       const response = await fetch(
         `${process.env.REACT_APP_API_HOST}/api/tasks/v1/users/`,
         {
-          headers: {
-            'Content-Type': 'application/json',
-            'X-CSRFToken': csrftoken
-          },
+          headers: { 'Content-Type': 'application/json' },
           credentials: 'include'
         }
       );
