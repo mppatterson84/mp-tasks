@@ -12,8 +12,8 @@ import Tasks from './components/Tasks';
 function App() {
   const [showAddTask, setShowAddTask] = useState(false);
   const [tasks, setTasks] = useState([]);
-  const [userId, setUserId] = useState(null);
   const [username, setUsername] = useState('Guest');
+  const [userId, setUserId] = useState(0);
   const [csrftoken, setCsrftoken] = useState('');
 
   // Get csrftoken
