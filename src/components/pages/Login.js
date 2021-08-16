@@ -40,6 +40,7 @@ const Login = ({ setName }) => {
           className="form-control mb-2"
           required
           onChange={(e) => setUsername(e.target.value)}
+          value={username}
         />
         <input
           type="password"
@@ -47,6 +48,7 @@ const Login = ({ setName }) => {
           className="form-control mb-2"
           required
           onChange={(e) => setPassword(e.target.value)}
+          value={password}
         />
         <button type="submit" className="w-100 btn btn-primary">
           Sign In
