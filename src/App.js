@@ -23,7 +23,7 @@ function App() {
 
   // Get User
   useEffect(() => {
-    (async () => {
+    const getResponse = async () => {
       const response = await fetch(
         `${process.env.REACT_APP_API_HOST}/api/tasks/v1/users/`,
         {
@@ -38,8 +38,9 @@ function App() {
         setUserId(content[0].id);
         setUsername(content[0].username);
       }
-    })();
-  });
+    };
+    getResponse();
+  }, []);
 
   useEffect(() => {
     const getTasks = async () => {
