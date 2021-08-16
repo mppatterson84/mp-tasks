@@ -1,10 +1,10 @@
-import { FaTrash } from 'react-icons/fa';
+import { FaTrashAlt } from 'react-icons/fa';
 
 const Task = ({ task, onDelete, onToggle }) => {
   return (
     <div className="task mt-1 p-2">
       <span className="delete">
-        <FaTrash onClick={() => onDelete(task.id)} />
+        <FaTrashAlt onClick={() => onDelete(task.id)} />
       </span>
       <span>
         <input
