@@ -14,13 +14,13 @@ const Nav = ({ username, csrftoken, setUsername, setTasks }) => {
         credentials: 'include'
       }
     );
-    setUsername('');
+    setUsername('Guest');
     setTasks([]);
   };
 
   let menu;
 
-  if (username === '') {
+  if (username === 'Guest') {
     menu = (
       <ul className="navbar-nav me-auto mb-2 mb-md-8">
         <li className="nav-item">

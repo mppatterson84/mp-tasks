@@ -12,8 +12,8 @@ import Tasks from './components/Tasks';
 function App() {
   const [showAddTask, setShowAddTask] = useState(false);
   const [tasks, setTasks] = useState([]);
-  const [username, setUsername] = useState('');
   const [userId, setUserId] = useState(null);
+  const [username, setUsername] = useState('Guest');
   const [csrftoken, setCsrftoken] = useState('');
 
   // Get csrftoken
@@ -37,6 +37,9 @@ function App() {
       if (!content.detail) {
         setUserId(content[0].id);
         setUsername(content[0].username);
+      } else {
+        setUserId(0);
+        setUsername('Guest');
       }
     };
     getResponse();

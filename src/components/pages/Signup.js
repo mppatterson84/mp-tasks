@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Redirect } from 'react-router';
 
 const Signup = () => {
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState('Guest');
   const [email, setEmail] = useState('');
   const [password1, setPassword1] = useState('');
   const [password2, setPassword2] = useState('');
