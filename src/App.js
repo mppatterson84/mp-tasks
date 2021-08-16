@@ -137,6 +137,7 @@ function App() {
           username={username}
           csrftoken={csrftoken}
           setUsername={setUsername}
+          setTasks={setTasks}
         />
         <div className="container">
           <Route
