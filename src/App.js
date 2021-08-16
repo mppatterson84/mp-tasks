@@ -139,7 +139,10 @@ function App() {
           setUsername={setUsername}
         />
         <div className="container">
-          <Route path="/Login" component={Login} />
+          <Route
+            path="/Login"
+            component={() => <Login setName={setUsername} />}
+          />
           <Route
             path="/Profile"
             component={() => <Profile username={username} />}

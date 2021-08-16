@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Redirect } from 'react-router';
 
-const Login = () => {
+const Login = ({ setName }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [redirect, setRedirect] = useState(false);
@@ -9,7 +9,7 @@ const Login = () => {
   const submit = async (e) => {
     e.preventDefault();
 
-    await fetch(
+    const response = await fetch(
       `${process.env.REACT_APP_API_HOST}/api/tasks/v1/rest-auth/login/`,
       {
         method: 'POST',
@@ -22,7 +22,10 @@ const Login = () => {
       }
     );
 
+    const content = await response.json();
+
     setRedirect(true);
+    setName(content.username);
   };
 
   if (redirect) {
