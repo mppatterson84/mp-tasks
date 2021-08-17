@@ -9,7 +9,7 @@ const Login = ({ setName }) => {
   const submit = async (e) => {
     e.preventDefault();
 
-    await fetch(
+    const res = await fetch(
       `${process.env.REACT_APP_API_HOST}/api/tasks/v1/rest-auth/login/`,
       {
         method: 'POST',
@@ -22,8 +22,10 @@ const Login = ({ setName }) => {
       }
     );
 
+    const data = await res.json();
+
     setRedirect(true);
-    setName('LoggedInUser');
+    setName(data.username);
   };
 
   if (redirect) {
