@@ -43,7 +43,7 @@ function App() {
       }
     };
     getResponse();
-  }, []);
+  }, [username]);
 
   useEffect(() => {
     const getTasks = async () => {
