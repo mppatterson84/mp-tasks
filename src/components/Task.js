@@ -12,7 +12,7 @@ const Task = ({ task, onDelete, onToggle }) => {
           name="completed"
           id="completedCheck"
           onChange={() => onToggle(task.id)}
-          checked={task.completed}
+          checked={task.completed ? task.completed : false}
         />
       </span>
       <h4>{task.title}</h4>
