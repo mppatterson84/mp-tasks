@@ -4,9 +4,9 @@ import Tasks from '../Tasks';
 
 const Home = ({
   tasks,
-  onDelete,
-  onToggle,
-  onAdd,
+  deleteTask,
+  toggleComplete,
+  addTask,
   userId,
   showAddTask,
   setShowAddTask
@@ -14,12 +14,16 @@ const Home = ({
   return (
     <div className="card my-3 mx-auto p-2">
       <Header
-        onAdd={() => setShowAddTask(!showAddTask)}
-        showAdd={showAddTask}
+        addTask={() => setShowAddTask(!showAddTask)}
+        showAddTask={showAddTask}
       />
-      {showAddTask && <AddTask onAdd={onAdd} userId={userId} />}
+      {showAddTask && <AddTask addTask={addTask} userId={userId} />}
       {tasks.length > 0 ? (
-        <Tasks tasks={tasks} onDelete={onDelete} onToggle={onToggle} />
+        <Tasks
+          tasks={tasks}
+          deleteTask={deleteTask}
+          toggleComplete={toggleComplete}
+        />
       ) : (
         <p>No tasks available. Add some tasks.</p>
       )}

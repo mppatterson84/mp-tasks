@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 import Button from './Button';
 
-const Header = ({ title, onAdd, showAdd }) => {
+const Header = ({ title, addTask, showAddTask }) => {
   return (
     <div className="d-flex justify-content-between">
       <h1>{title}</h1>
       <Button
-        color={showAdd ? 'danger' : 'primary'}
-        text={showAdd ? 'Close' : 'Add'}
-        onClick={onAdd}
+        color={showAddTask ? 'danger' : 'primary'}
+        text={showAddTask ? 'Close' : 'Add'}
+        onClick={addTask}
       />
     </div>
   );

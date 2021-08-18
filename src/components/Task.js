@@ -1,17 +1,17 @@
 import { FaTrashAlt } from 'react-icons/fa';
 
-const Task = ({ task, onDelete, onToggle }) => {
+const Task = ({ task, deleteTask, toggleComplete }) => {
   return (
     <div className="task mt-1 p-2">
       <span className="delete">
-        <FaTrashAlt onClick={() => onDelete(task.id)} />
+        <FaTrashAlt onClick={() => deleteTask(task.id)} />
       </span>
       <span>
         <input
           type="checkbox"
           name="completed"
           id="completedCheck"
-          onChange={() => onToggle(task.id)}
+          onChange={() => toggleComplete(task.id)}
           checked={task.completed ? task.completed : false}
         />
       </span>

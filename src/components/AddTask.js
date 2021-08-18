@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const AddTask = ({ onAdd, userId }) => {
+const AddTask = ({ addTask, userId }) => {
   const [title, setTitle] = useState('');
   const [detail, setDetail] = useState('');
   const [completed, setCompleted] = useState(false);
@@ -15,7 +15,7 @@ const AddTask = ({ onAdd, userId }) => {
       return;
     }
 
-    onAdd({ title, detail, due_by, completed, author });
+    addTask({ title, detail, due_by, completed, author });
 
     setTitle('');
     setDetail('');

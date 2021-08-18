@@ -148,9 +148,9 @@ function App() {
             component={() => (
               <Home
                 tasks={tasks}
-                onDelete={deleteTask}
-                onToggle={toggleComplete}
-                onAdd={addTask}
+                deleteTask={deleteTask}
+                toggleComplete={toggleComplete}
+                addTask={addTask}
                 userId={userId}
                 showAddTask={showAddTask}
                 setShowAddTask={setShowAddTask}
