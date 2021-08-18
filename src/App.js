@@ -22,7 +22,7 @@ function App() {
   // Get User
   useEffect(() => {
     const getResponse = async () => {
-      const response = await fetch(
+      const res = await fetch(
         `${process.env.REACT_APP_API_HOST}/api/tasks/v1/users/`,
         {
           headers: { 'Content-Type': 'application/json' },
@@ -30,11 +30,11 @@ function App() {
         }
       );
 
-      const content = await response.json();
+      const data = await res.json();
 
-      if (!content.detail) {
-        setUserId(content[0].id);
-        setUsername(content[0].username);
+      if (!data.detail) {
+        setUserId(data[0].id);
+        setUsername(data[0].username);
       } else {
         setUserId(0);
         setUsername('Guest');
