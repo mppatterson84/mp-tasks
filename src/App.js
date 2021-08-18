@@ -43,9 +43,6 @@ function App() {
     if (!data.detail) {
       setUserId(data[0].id);
       setUsername(data[0].username);
-    } else {
-      setUserId(0);
-      setUsername('Guest');
     }
 
     return data;
