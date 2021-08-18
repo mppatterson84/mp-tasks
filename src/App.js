@@ -49,8 +49,10 @@ function App() {
       const tasksFromServer = await fetchTasks();
       setTasks(tasksFromServer);
     };
-    getTasks();
-  }, []);
+    if (username !== 'Guest') {
+      getTasks();
+    }
+  }, [username]);
 
   // Fetch Tasks
   const fetchTasks = async () => {
