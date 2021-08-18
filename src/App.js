@@ -21,27 +21,35 @@ function App() {
 
   // Get User
   useEffect(() => {
-    const getResponse = async () => {
-      const res = await fetch(
-        `${process.env.REACT_APP_API_HOST}/api/tasks/v1/users/`,
-        {
-          headers: { 'Content-Type': 'application/json' },
-          credentials: 'include'
-        }
-      );
-
-      const data = await res.json();
-
-      if (!data.detail) {
-        setUserId(data[0].id);
-        setUsername(data[0].username);
-      } else {
-        setUserId(0);
-        setUsername('Guest');
-      }
+    const getUser = async () => {
+      const userFromServer = await fetchUser();
+      setTasks(userFromServer);
     };
-    getResponse();
-  }, [username]);
+    getUser();
+  }, []);
+
+  // Fetch User
+  const fetchUser = async () => {
+    const res = await fetch(
+      `${process.env.REACT_APP_API_HOST}/api/tasks/v1/users/`,
+      {
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include'
+      }
+    );
+
+    const data = await res.json();
+
+    if (!data.detail) {
+      setUserId(data[0].id);
+      setUsername(data[0].username);
+    } else {
+      setUserId(0);
+      setUsername('Guest');
+    }
+
+    return data;
+  };
 
   // Get Tasks
   useEffect(() => {
