@@ -1,13 +1,11 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import AddTask from './components/AddTask';
-import Header from './components/Header';
+import Home from './components/pages/Home';
 import Login from './components/pages/Login';
 import Nav from './components/Nav';
 import Profile from './components/pages/Profile';
 import Signup from './components/pages/Signup';
-import Tasks from './components/Tasks';
 
 function App() {
   const [showAddTask, setShowAddTask] = useState(false);
@@ -145,30 +143,31 @@ function App() {
         />
         <div className="container">
           <Route
+            exact
+            path="/"
+            component={() => (
+              <Home
+                tasks={tasks}
+                onDelete={deleteTask}
+                onToggle={toggleComplete}
+                onAdd={addTask}
+                userId={userId}
+                showAddTask={showAddTask}
+                setShowAddTask={setShowAddTask}
+              />
+            )}
+          />
+          <Route
+            exact
             path="/Login"
             component={() => <Login setName={setUsername} />}
           />
           <Route
+            exact
             path="/Profile"
             component={() => <Profile username={username} />}
           />
-          <Route path="/Signup" component={Signup} />
-          <div className="card my-3 mx-auto p-2">
-            <Header
-              onAdd={() => setShowAddTask(!showAddTask)}
-              showAdd={showAddTask}
-            />
-            {showAddTask && <AddTask onAdd={addTask} userId={userId} />}
-            {tasks.length > 0 ? (
-              <Tasks
-                tasks={tasks}
-                onDelete={deleteTask}
-                onToggle={toggleComplete}
-              />
-            ) : (
-              <p>No tasks available. Add some tasks.</p>
-            )}
-          </div>
+          <Route exact path="/Signup" component={Signup} />
         </div>
       </div>
     </BrowserRouter>
