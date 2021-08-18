@@ -43,6 +43,7 @@ function App() {
     getResponse();
   }, [username]);
 
+  // Get Tasks
   useEffect(() => {
     const getTasks = async () => {
       const tasksFromServer = await fetchTasks();
