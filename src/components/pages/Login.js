@@ -26,6 +26,7 @@ const Login = ({ setName }) => {
 
     setRedirect(true);
     setName(data.username);
+    window.location.reload();
   };
 
   if (redirect) {
