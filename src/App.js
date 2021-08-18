@@ -31,7 +31,7 @@ function App() {
   // Fetch User
   const fetchUser = async () => {
     const res = await fetch(
-      `${process.env.REACT_APP_API_HOST}/api/tasks/v1/users/`,
+      `https://www.michael-patterson.com/api/tasks/v1/users/`,
       {
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include'
@@ -61,7 +61,7 @@ function App() {
 
   // Fetch Tasks
   const fetchTasks = async () => {
-    const res = await fetch(`${process.env.REACT_APP_API_HOST}/api/tasks/v1/`, {
+    const res = await fetch(`https://www.michael-patterson.com/api/tasks/v1/`, {
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include'
     });
@@ -73,7 +73,7 @@ function App() {
   // Fetch Task
   const fetchTask = async (id) => {
     const res = await fetch(
-      `${process.env.REACT_APP_API_HOST}/api/tasks/v1/${id}/`,
+      `https://www.michael-patterson.com/api/tasks/v1/${id}/`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ function App() {
 
   // Add Task
   const addTask = async (task) => {
-    const res = await fetch(`${process.env.REACT_APP_API_HOST}/api/tasks/v1/`, {
+    const res = await fetch(`https://www.michael-patterson.com/api/tasks/v1/`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -105,7 +105,7 @@ function App() {
 
   // Delete task
   const deleteTask = async (id) => {
-    await fetch(`${process.env.REACT_APP_API_HOST}/api/tasks/v1/${id}/`, {
+    await fetch(`https://www.michael-patterson.com/api/tasks/v1/${id}/`, {
       headers: { 'X-CSRFToken': csrftoken },
       credentials: 'include',
       method: 'DELETE'
@@ -119,7 +119,7 @@ function App() {
     const updatedTask = { ...taskToToggle, completed: !taskToToggle.completed };
 
     const res = await fetch(
-      `${process.env.REACT_APP_API_HOST}/api/tasks/v1/${id}/`,
+      `https://www.michael-patterson.com/api/tasks/v1/${id}/`,
       {
         method: 'PUT',
         headers: {

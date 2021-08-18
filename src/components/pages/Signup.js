@@ -12,7 +12,7 @@ const Signup = () => {
     e.preventDefault();
 
     await fetch(
-      `${process.env.REACT_APP_API_HOST}/api/tasks/v1/rest-auth/registration/`,
+      `https://www.michael-patterson.com/api/tasks/v1/rest-auth/registration/`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
