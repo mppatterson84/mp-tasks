@@ -10,7 +10,7 @@ const Login = ({ setName }) => {
     e.preventDefault();
 
     const res = await fetch(
-      `https://www.michael-patterson.com/api/tasks/v1/rest-auth/login/`,
+      `${process.env.REACT_APP_API_HOST}/api/tasks/v1/rest-auth/login/`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

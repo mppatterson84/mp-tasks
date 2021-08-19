@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Nav = ({ username, csrftoken, setUsername, setTasks }) => {
   const logout = async () => {
     await fetch(
-      `https://www.michael-patterson.com/api/tasks/v1/rest-auth/logout/`,
+      `${process.env.REACT_APP_API_HOST}/api/tasks/v1/rest-auth/logout/`,
       {
         method: 'POST',
         headers: {
