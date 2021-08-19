@@ -16,7 +16,6 @@ const Nav = ({ username, csrftoken, setUsername, setTasks }) => {
     );
     setUsername('Guest');
     setTasks([]);
-    window.location.reload();
   };
 
   let menu;
