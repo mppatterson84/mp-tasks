@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { Redirect } from 'react-router';
 
-const Login = ({ setName }) => {
+const Login = ({ getUser }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [redirect, setRedirect] = useState(false);
 
-  const submit = async (e) => {
+  const submit = async e => {
     e.preventDefault();
 
-    const res = await fetch(
+    await fetch(
       `${process.env.REACT_APP_API_HOST}/api/tasks/v1/rest-auth/login/`,
       {
         method: 'POST',
@@ -22,11 +22,8 @@ const Login = ({ setName }) => {
       }
     );
 
-    const data = await res.json();
-
     setRedirect(true);
-    setName(data.username);
-    window.location.reload();
+    getUser();
   };
 
   if (redirect) {
@@ -42,7 +39,7 @@ const Login = ({ setName }) => {
           placeholder="Username"
           className="form-control mb-2"
           required
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={e => setUsername(e.target.value)}
           value={username}
         />
         <input
@@ -50,7 +47,7 @@ const Login = ({ setName }) => {
           placeholder="Password"
           className="form-control mb-2"
           required
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={e => setPassword(e.target.value)}
           value={password}
         />
         <button type="submit" className="w-100 btn btn-primary">

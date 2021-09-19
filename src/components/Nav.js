@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -15,6 +16,7 @@ const Nav = ({ username, csrftoken, setUsername, setTasks }) => {
       }
     );
     setUsername('Guest');
+    Cookies.remove('username');
     setTasks([]);
   };
 

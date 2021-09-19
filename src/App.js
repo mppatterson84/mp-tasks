@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Home from './components/pages/Home';
@@ -10,20 +10,20 @@ import Signup from './components/pages/Signup';
 function App() {
   const [showAddTask, setShowAddTask] = useState(false);
   const [tasks, setTasks] = useState([]);
-  const [username, setUsername] = useState('Guest');
+  const [username, setUsername] = useState(Cookies.get('username'));
   const [userId, setUserId] = useState(0);
   const [csrftoken, setCsrftoken] = useState('');
 
   // Get csrftoken
   useEffect(() => {
     setCsrftoken(Cookies.get('csrftoken'));
-  }, []);
+  }, [username]);
 
   // Get User
-  useEffect(() => {
+  const getUser = useCallback(() => {
     const getUser = async () => {
       const userFromServer = await fetchUser();
-      setTasks(userFromServer);
+      Cookies.set('username', userFromServer[0].username, { expires: 14 });
     };
     getUser();
   }, []);
@@ -71,7 +71,7 @@ function App() {
   };
 
   // Fetch Task
-  const fetchTask = async (id) => {
+  const fetchTask = async id => {
     const res = await fetch(
       `${process.env.REACT_APP_API_HOST}/api/tasks/v1/${id}/`,
       {
@@ -88,7 +88,7 @@ function App() {
   };
 
   // Add Task
-  const addTask = async (task) => {
+  const addTask = async task => {
     const res = await fetch(`${process.env.REACT_APP_API_HOST}/api/tasks/v1/`, {
       method: 'POST',
       headers: {
@@ -104,17 +104,17 @@ function App() {
   };
 
   // Delete task
-  const deleteTask = async (id) => {
+  const deleteTask = async id => {
     await fetch(`${process.env.REACT_APP_API_HOST}/api/tasks/v1/${id}/`, {
       headers: { 'X-CSRFToken': csrftoken },
       credentials: 'include',
       method: 'DELETE'
     });
-    setTasks(tasks.filter((task) => task.id !== id));
+    setTasks(tasks.filter(task => task.id !== id));
   };
 
   // Toggle complete
-  const toggleComplete = async (id) => {
+  const toggleComplete = async id => {
     const taskToToggle = await fetchTask(id);
     const updatedTask = { ...taskToToggle, completed: !taskToToggle.completed };
 
@@ -134,7 +134,7 @@ function App() {
     const data = await res.json();
 
     setTasks(
-      tasks.map((task) =>
+      tasks.map(task =>
         task.id === id ? { ...task, completed: data.completed } : task
       )
     );
@@ -168,7 +168,7 @@ function App() {
           <Route
             exact
             path="/Login"
-            component={() => <Login setName={setUsername} />}
+            component={() => <Login getUser={getUser} />}
           />
           <Route
             exact
